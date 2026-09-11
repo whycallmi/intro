@@ -3,105 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>이번 주 평일 저녁 밥상</title>
+<title>이번 주 저녁 밥상</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#FBF6EC;
-    --paper-dim:#F3EBDA;
-    --ink:#3B2E22;
-    --ink-soft:#6E5E4C;
-    --sage:#748263;
-    --sage-dim:#DCE3D2;
-    --brick:#B3502F;
-    --yolk:#E2A93B;
-    --line:#DDD1B8;
-    --card-shadow: 4px 4px 0 rgba(59,46,34,0.08);
+    --bg:#ffffff;
+    --bg-dim:#f5f5f7;
+    --bg-dim2:#fbfbfd;
+    --ink:#1d1d1f;
+    --ink-soft:#6e6e73;
+    --line:#d2d2d7;
+    --blue:#0071e3;
+    --blue-dark:#0058b0;
+    --family-tint:#fff2ec;
+    --family-accent:#c8552c;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
-    background:var(--paper);
+    background:var(--bg);
     color:var(--ink);
-    font-family:'Noto Sans KR', sans-serif;
-    line-height:1.6;
+    font-family:'Noto Sans KR', -apple-system, 'Apple SD Gothic Neo', BlinkMacSystemFont, sans-serif;
+    line-height:1.5;
     -webkit-font-smoothing:antialiased;
+    letter-spacing:-0.01em;
   }
   .wrap{
-    max-width:920px;
+    max-width:980px;
     margin:0 auto;
-    padding:48px 24px 80px;
+    padding:0 22px;
   }
 
-  /* Header */
+  /* Header / Hero */
   header{
-    margin-bottom:44px;
+    text-align:center;
+    padding:88px 22px 56px;
+    background:linear-gradient(180deg, var(--bg-dim2) 0%, var(--bg) 100%);
   }
-  .eyebrow-row{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:8px;
-    border-bottom:2px solid var(--ink);
-    padding-bottom:16px;
-    margin-bottom:20px;
-  }
-  .brand{
-    font-family:'Noto Serif KR', serif;
-    font-weight:700;
-    font-size:15px;
-    letter-spacing:0.02em;
-  }
-  .date-range{
+  .eyebrow{
     font-size:14px;
+    font-weight:600;
     color:var(--ink-soft);
+    letter-spacing:0.02em;
+    margin-bottom:12px;
   }
   h1{
-    font-family:'Noto Serif KR', serif;
-    font-weight:700;
-    font-size:clamp(32px, 5vw, 46px);
-    line-height:1.25;
-    margin:0 0 14px;
+    font-weight:600;
+    font-size:clamp(34px, 5.5vw, 56px);
+    line-height:1.1;
+    margin:0 0 16px;
+    letter-spacing:-0.02em;
   }
-  h1 span{
+  h1 .accent{
     display:block;
-    font-size:0.5em;
-    font-weight:500;
-    color:var(--sage);
-    margin-bottom:6px;
+    font-weight:400;
+    font-size:0.42em;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+    letter-spacing:0;
   }
   .subtext{
-    font-size:15px;
+    font-size:19px;
+    font-weight:400;
     color:var(--ink-soft);
-    max-width:60ch;
+    max-width:560px;
+    margin:0 auto;
+    line-height:1.5;
   }
 
-  /* Tabs */
-  .tabs{
+  /* Tabs — Apple-style segmented pill control */
+  .tabs-outer{
     display:flex;
-    gap:4px;
-    margin:40px 0 28px;
-    border-bottom:1px solid var(--line);
+    justify-content:center;
+    padding:36px 22px 0;
+    position:sticky;
+    top:0;
+    background:rgba(255,255,255,0.82);
+    backdrop-filter:saturate(180%) blur(20px);
+    z-index:10;
+    padding-bottom:16px;
+  }
+  .tabs{
+    display:inline-flex;
+    background:var(--bg-dim);
+    border-radius:980px;
+    padding:4px;
+    gap:2px;
   }
   .tab-btn{
-    font-family:'Noto Serif KR', serif;
-    font-size:16px;
-    font-weight:600;
+    font-family:inherit;
+    font-size:14px;
+    font-weight:500;
     background:none;
     border:none;
-    padding:10px 4px;
-    margin-right:28px;
+    padding:9px 22px;
+    border-radius:980px;
     cursor:pointer;
     color:var(--ink-soft);
-    position:relative;
-    top:1px;
+    transition:background .2s ease, color .2s ease;
   }
   .tab-btn.active{
-    color:var(--ink);
-    border-bottom:2px solid var(--brick);
+    color:#fff;
+    background:var(--ink);
   }
+
+  .content{ padding:48px 22px 40px; }
 
   section.panel{display:none;}
   section.panel.active{display:block;}
@@ -110,85 +117,135 @@
   .day-list{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:12px;
   }
   .day-card{
-    background:var(--paper);
-    border:1px solid var(--line);
-    box-shadow:var(--card-shadow);
-    padding:22px 24px;
+    background:var(--bg-dim);
+    border-radius:18px;
+    padding:26px 28px;
     display:grid;
-    grid-template-columns:88px 1fr;
-    gap:20px;
+    grid-template-columns:56px 64px 1fr;
+    gap:22px;
     align-items:start;
+    transition:background .2s ease;
+  }
+  .dish-icon{
+    width:56px;
+    height:56px;
+    border-radius:14px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .day-card.family .dish-icon{ background:#fff; }
+  .dish-icon svg{ width:30px; height:30px; color:var(--ink-soft); }
+  .day-card.family .dish-icon svg{ color:var(--family-accent); }
+  .day-card.family{
+    background:var(--family-tint);
   }
   .day-tag{
-    font-family:'Noto Serif KR', serif;
-    font-weight:700;
-    font-size:15px;
-    color:#fff;
-    background:var(--sage);
-    padding:6px 0;
-    text-align:center;
-    border-radius:2px;
-    height:fit-content;
-  }
-  .day-card.family .day-tag{ background:var(--brick); }
-  .dish-name{
-    font-family:'Noto Serif KR', serif;
     font-weight:600;
-    font-size:19px;
-    margin:0 0 6px;
+    font-size:15px;
+    color:var(--ink-soft);
+    padding-top:2px;
+  }
+  .day-card.family .day-tag{ color:var(--family-accent); }
+  .dish-name{
+    font-weight:600;
+    font-size:21px;
+    letter-spacing:-0.01em;
+    margin:0 0 8px;
     display:flex;
     align-items:center;
     gap:10px;
     flex-wrap:wrap;
   }
   .people-badge{
-    font-family:'Noto Sans KR', sans-serif;
     font-weight:500;
     font-size:11.5px;
-    color:var(--brick);
-    background:#F4E3DA;
-    padding:3px 9px;
-    border-radius:2px;
+    color:#fff;
+    background:var(--family-accent);
+    padding:4px 10px;
+    border-radius:980px;
   }
   .dish-items{
-    font-size:14px;
+    font-size:15px;
     color:var(--ink-soft);
     margin:0 0 10px;
   }
   .dish-why{
-    font-size:13px;
+    font-size:13.5px;
     color:var(--ink-soft);
-    border-left:2px solid var(--sage-dim);
-    padding-left:10px;
     margin:0;
+    padding-top:10px;
+    border-top:1px solid var(--line);
   }
+
+  /* Tip box */
+  .tip-box{
+    background:var(--ink);
+    color:#fff;
+    border-radius:18px;
+    padding:26px 28px;
+    font-size:14.5px;
+    margin-top:24px;
+  }
+  .tip-box strong{
+    font-weight:600;
+    font-size:15px;
+    display:block;
+    margin-bottom:8px;
+  }
+  .tip-box p{ color:#c8c8cc; margin:0; }
+  .tip-box ul{
+    margin:10px 0 0;
+    padding-left:18px;
+    color:#c8c8cc;
+  }
+  .tip-box li{ margin-bottom:6px; }
 
   /* Shopping list */
   .list-note{
-    font-size:14px;
+    font-size:15px;
     color:var(--ink-soft);
-    margin:0 0 28px;
+    margin:0 0 24px;
+    text-align:center;
   }
-  .cat-block{
-    margin-bottom:32px;
-  }
-  .cat-title{
-    font-family:'Noto Serif KR', serif;
-    font-weight:600;
-    font-size:17px;
-    margin:0 0 14px;
+  .progress-row{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:14px;
+    margin-bottom:32px;
+    font-size:13px;
+    color:var(--ink-soft);
+    font-weight:500;
   }
-  .cat-title::after{
-    content:"";
+  .progress-track{
     flex:1;
-    height:1px;
-    background:var(--line);
+    height:6px;
+    background:var(--bg-dim);
+    border-radius:980px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--blue);
+    width:0%;
+    transition:width .25s ease;
+  }
+
+  .cat-block{
+    margin-bottom:28px;
+    background:var(--bg-dim);
+    border-radius:18px;
+    padding:26px 28px;
+  }
+  .cat-title{
+    font-weight:600;
+    font-size:16px;
+    margin:0 0 16px;
   }
   ul.items{
     list-style:none;
@@ -196,7 +253,7 @@
     padding:0;
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:10px 24px;
+    gap:12px 24px;
   }
   ul.items li{
     display:flex;
@@ -205,10 +262,10 @@
     font-size:15px;
   }
   ul.items li input[type="checkbox"]{
-    width:18px;
-    height:18px;
-    margin-top:2px;
-    accent-color:var(--brick);
+    width:19px;
+    height:19px;
+    margin-top:1px;
+    accent-color:var(--blue);
     flex-shrink:0;
     cursor:pointer;
   }
@@ -217,224 +274,204 @@
     text-decoration:line-through;
     text-decoration-color:var(--line);
   }
-  .tip-box{
-    background:var(--sage-dim);
-    padding:18px 20px;
-    font-size:14px;
-    color:var(--ink);
-    margin-top:8px;
-  }
-  .tip-box strong{
-    font-family:'Noto Serif KR', serif;
-  }
-  .tip-box ul{
-    margin:10px 0 0;
-    padding-left:18px;
-  }
-  .tip-box li{ margin-bottom:4px; }
-
-  .progress-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:24px;
-    font-size:13px;
-    color:var(--ink-soft);
-  }
-  .progress-track{
-    flex:1;
-    height:6px;
-    background:var(--paper-dim);
-    border:1px solid var(--line);
-  }
-  .progress-fill{
-    height:100%;
-    background:var(--sage);
-    width:0%;
-    transition:width .25s ease;
-  }
 
   footer{
-    margin-top:56px;
-    padding-top:20px;
-    border-top:1px solid var(--line);
+    margin-top:20px;
+    padding:32px 22px 64px;
+    text-align:center;
     font-size:12.5px;
     color:var(--ink-soft);
+    max-width:620px;
+    margin-left:auto;
+    margin-right:auto;
   }
 
   @media (max-width:560px){
-    .wrap{padding:32px 16px 60px;}
-    .day-card{grid-template-columns:1fr; gap:8px;}
-    .day-tag{width:fit-content; padding:4px 14px;}
+    header{padding:64px 20px 40px;}
+    .content{padding:36px 16px 24px;}
+    .day-card{grid-template-columns:32px 40px 1fr; gap:12px; padding:22px 18px; align-items:center;}
+    .day-tag{font-size:13px; color:var(--ink-soft); font-weight:700;}
+    .dish-icon{width:40px; height:40px; border-radius:10px;}
+    .dish-icon svg{width:22px; height:22px;}
+    .cat-block{padding:22px 20px;}
     ul.items{grid-template-columns:1fr;}
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
   <header>
-    <div class="eyebrow-row">
-      <div class="brand">우리집 저녁상</div>
-      <div class="date-range">월~일 저녁 · 인원 요일별 상이</div>
-    </div>
-    <h1><span>맵지 않게, 채소는 골고루</span>이번 주 저녁 밥상</h1>
-    <p class="subtext">월~목은 엄마와 둘째딸 2인, 금~일은 아빠도 함께하는 가족 저녁이에요. 당뇨 전 단계인 엄마와 통풍이 걱정되는 아빠를 생각해 잡곡밥과 담백한 조리법으로 구성했어요.</p>
+    <div class="eyebrow">우리집 저녁상</div>
+    <h1><span class="accent">맵지 않게, 채소는 골고루</span>이번 주 저녁 밥상</h1>
+    <p class="subtext">월~목은 엄마와 둘째딸 2인, 금~일은 아빠도 함께하는 가족 저녁이에요.</p>
   </header>
 
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="menu">메뉴</button>
-    <button class="tab-btn" data-tab="shopping">장보기 목록</button>
-  </nav>
+  <div class="tabs-outer">
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="menu">메뉴</button>
+      <button class="tab-btn" data-tab="shopping">장보기 목록</button>
+    </nav>
+  </div>
 
-  <section class="panel active" id="menu">
-    <div class="day-list">
+  <div class="wrap">
+    <div class="content">
 
-      <article class="day-card">
-        <div class="day-tag">월</div>
-        <div>
-          <h3 class="dish-name">두부 된장찌개 &amp; 나물무침</h3>
-          <p class="dish-items">된장찌개(두부·애호박·양파·대파), 콩나물무침 또는 시금치나물, 잡곡밥</p>
-          <p class="dish-why">두부가 혈당 관리에 좋고 재료가 익숙해서 10~15분이면 완성돼요.</p>
+      <section class="panel active" id="menu">
+        <div class="day-list">
+
+          <article class="day-card">
+            <div class="day-tag">월</div>
+            <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M6 11c0-2 .5-3 1-4"/><path d="M12 11c0-2.5.5-4 1-5"/><path d="M17 11c0-2 .5-3 .8-4"/></svg></div>
+            <div>
+              <h3 class="dish-name">두부 된장찌개 &amp; 나물무침</h3>
+              <p class="dish-items">된장찌개(두부·애호박·양파·대파), 콩나물무침 또는 시금치나물, 잡곡밥</p>
+              <p class="dish-why">두부가 혈당 관리에 좋고 재료가 익숙해서 10~15분이면 완성돼요.</p>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-tag">화</div>
+            <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M6 11c0-2 .5-3 1-4"/><path d="M12 11c0-2.5.5-4 1-5"/><path d="M17 11c0-2 .5-3 .8-4"/></svg></div>
+            <div>
+              <h3 class="dish-name">소고기 무국 &amp; 계란찜</h3>
+              <p class="dish-items">소고기 무국(소고기·무·대파), 전자레인지 계란찜, 잡곡밥</p>
+              <p class="dish-why">국은 끓이기만 하면 되고, 계란찜은 전자레인지로 5분이면 완성돼요.</p>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-tag">수</div>
+            <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h14a6 6 0 0 1-12 4"/><path d="M16 12h5"/></svg></div>
+            <div>
+              <h3 class="dish-name">닭가슴살 야채볶음</h3>
+              <p class="dish-items">닭가슴살·양파·당근·애호박·파프리카 볶음(간장 약하게), 잡곡밥</p>
+              <p class="dish-why">기름을 적게 써서 볶으면 자극적이지 않고 단백질과 채소를 골고루 챙길 수 있어요.</p>
+            </div>
+          </article>
+
+          <article class="day-card">
+            <div class="day-tag">목</div>
+            <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M6 11c0-2 .5-3 1-4"/><path d="M12 11c0-2.5.5-4 1-5"/><path d="M17 11c0-2 .5-3 .8-4"/></svg></div>
+            <div>
+              <h3 class="dish-name">순한 순두부탕 &amp; 나물</h3>
+              <p class="dish-items">순두부·달걀·애호박·양파로 맑게 끓인 순두부탕, 도라지무침 또는 시금치나물, 잡곡밥</p>
+              <p class="dish-why">맵지 않게 끓여도 든든하고, 인덕션으로 빠르게 조리돼요.</p>
+            </div>
+          </article>
+
+          <article class="day-card family">
+            <div class="day-tag">금</div>
+            <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5M12 7V5M17 7V5"/></svg></div>
+            <div>
+              <h3 class="dish-name">두부 스테이크 &amp; 버섯구이<span class="people-badge">가족 3인</span></h3>
+              <p class="dish-items">두부 2모, 표고버섯 6~8개, 마늘, 간장 약간, 브로콜리 또는 애호박, 잡곡밥</p>
+              <p class="dish-why">두부는 퓨린이 낮아 아빠도 부담 없이 드실 수 있고, 온 가족이 함께 먹기 좋아요.</p>
+            </div>
+          </article>
+
+          <article class="day-card family">
+            <div class="day-tag">토</div>
+            <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-6Z"/><path d="M2 10h20"/><path d="M7 10V7a1 1 0 0 1 1-1h1M16 10V7a1 1 0 0 0-1-1h-1"/></svg></div>
+            <div>
+              <h3 class="dish-name">담백 닭볶음탕 &amp; 잡채<span class="people-badge">격주 4인 / 3인</span></h3>
+              <p class="dish-items">닭다리살 400~500g, 감자, 당근, 양파, 당면, 시금치, 잡곡밥</p>
+              <p class="dish-why">주말이라 시간을 좀 더 쓸 수 있는 메뉴예요. 닭고기는 퓨린이 중간 정도라 아빠는 적당량만 드시면 좋아요.</p>
+            </div>
+          </article>
+
+          <article class="day-card family">
+            <div class="day-tag">일</div>
+            <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5M12 7V5M17 7V5"/></svg></div>
+            <div>
+              <h3 class="dish-name">소불고기 &amp; 계란찜<span class="people-badge">가족 3인</span></h3>
+              <p class="dish-items">불고기용 소고기 300g, 양파, 당근, 대파, 계란, 잡곡밥</p>
+              <p class="dish-why">기름을 적게 쓰고 채소를 듬뿍 넣으면 자극적이지 않게 먹을 수 있어요.</p>
+            </div>
+          </article>
+
         </div>
-      </article>
 
-      <article class="day-card">
-        <div class="day-tag">화</div>
-        <div>
-          <h3 class="dish-name">소고기 무국 &amp; 계란찜</h3>
-          <p class="dish-items">소고기 무국(소고기·무·대파), 전자레인지 계란찜, 잡곡밥</p>
-          <p class="dish-why">국은 끓이기만 하면 되고, 계란찜은 전자레인지로 5분이면 완성돼요.</p>
+        <div class="tip-box">
+          <strong>통풍 참고</strong>
+          <p>아빠가 함께 드시는 금~일 메뉴는 퓨린 함량이 높은 등푸른 생선(고등어·정어리 등)과 내장류를 피하고, 두부·닭고기·소고기를 적당량으로 구성했어요. 통풍 식단은 개인차가 커서 정확한 제한 식품은 병원이나 영양사와 상담하시는 게 가장 정확해요.</p>
         </div>
-      </article>
+      </section>
 
-      <article class="day-card">
-        <div class="day-tag">수</div>
-        <div>
-          <h3 class="dish-name">닭가슴살 야채볶음</h3>
-          <p class="dish-items">닭가슴살·양파·당근·애호박·파프리카 볶음(간장 약하게), 잡곡밥</p>
-          <p class="dish-why">기름을 적게 써서 볶으면 자극적이지 않고 단백질과 채소를 골고루 챙길 수 있어요.</p>
+      <section class="panel" id="shopping">
+        <p class="list-note">이번 주 월~일 저녁 7일 치 장보기 목록이에요. 체크하면서 장을 봐보세요.</p>
+
+        <div class="progress-row">
+          <span id="progress-label">0 / 0 구매 완료</span>
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
         </div>
-      </article>
 
-      <article class="day-card">
-        <div class="day-tag">목</div>
-        <div>
-          <h3 class="dish-name">순한 순두부탕 &amp; 나물</h3>
-          <p class="dish-items">순두부·달걀·애호박·양파로 맑게 끓인 순두부탕, 도라지무침 또는 시금치나물, 잡곡밥</p>
-          <p class="dish-why">맵지 않게 끓여도 든든하고, 인덕션으로 빠르게 조리돼요.</p>
+        <div class="cat-block">
+          <h3 class="cat-title">고기 · 생선 · 두부 · 계란</h3>
+          <ul class="items">
+            <li><label><input type="checkbox"><span>두부 3모 (월 된장찌개용 1 + 금 두부스테이크용 2)</span></label></li>
+            <li><label><input type="checkbox"><span>소고기 국거리용 100~150g (화)</span></label></li>
+            <li><label><input type="checkbox"><span>닭가슴살 200g (수)</span></label></li>
+            <li><label><input type="checkbox"><span>순두부 1팩 (목)</span></label></li>
+            <li><label><input type="checkbox"><span>닭다리살 400~500g (토)</span></label></li>
+            <li><label><input type="checkbox"><span>불고기용 소고기 300g (일)</span></label></li>
+            <li><label><input type="checkbox"><span>계란 1.5판 (여러 요리에 사용)</span></label></li>
+          </ul>
         </div>
-      </article>
 
-      <article class="day-card family">
-        <div class="day-tag">금</div>
-        <div>
-          <h3 class="dish-name">두부 스테이크 &amp; 버섯구이<span class="people-badge">가족 3인</span></h3>
-          <p class="dish-items">두부 2모, 표고버섯 6~8개, 마늘, 간장 약간, 브로콜리 또는 애호박, 잡곡밥</p>
-          <p class="dish-why">두부는 퓨린이 낮아 아빠도 부담 없이 드실 수 있고, 온 가족이 함께 먹기 좋아요.</p>
+        <div class="cat-block">
+          <h3 class="cat-title">채소류</h3>
+          <ul class="items">
+            <li><label><input type="checkbox"><span>애호박 2~3개</span></label></li>
+            <li><label><input type="checkbox"><span>양파 5~6개</span></label></li>
+            <li><label><input type="checkbox"><span>대파 1~2단</span></label></li>
+            <li><label><input type="checkbox"><span>무 1/2개</span></label></li>
+            <li><label><input type="checkbox"><span>콩나물 또는 시금치 1~2봉</span></label></li>
+            <li><label><input type="checkbox"><span>당근 2~3개</span></label></li>
+            <li><label><input type="checkbox"><span>파프리카 1개</span></label></li>
+            <li><label><input type="checkbox"><span>도라지 (손질된 것, 없으면 시금치로 대체)</span></label></li>
+            <li><label><input type="checkbox"><span>표고버섯 6~8개 (금)</span></label></li>
+            <li><label><input type="checkbox"><span>브로콜리 1개 (금, 선택)</span></label></li>
+            <li><label><input type="checkbox"><span>감자 3~4개 (토)</span></label></li>
+            <li><label><input type="checkbox"><span>당면 1봉 (토)</span></label></li>
+          </ul>
         </div>
-      </article>
 
-      <article class="day-card family">
-        <div class="day-tag">토</div>
-        <div>
-          <h3 class="dish-name">담백 닭볶음탕 &amp; 잡채<span class="people-badge">격주 4인 / 3인</span></h3>
-          <p class="dish-items">닭다리살 400~500g, 감자, 당근, 양파, 당면, 시금치, 잡곡밥</p>
-          <p class="dish-why">주말이라 시간을 좀 더 쓸 수 있는 메뉴예요. 닭고기는 퓨린이 중간 정도라 아빠는 적당량만 드시면 좋아요.</p>
+        <div class="cat-block">
+          <h3 class="cat-title">양념 · 기본 재료</h3>
+          <ul class="items">
+            <li><label><input type="checkbox"><span>된장</span></label></li>
+            <li><label><input type="checkbox"><span>국간장 또는 진간장</span></label></li>
+            <li><label><input type="checkbox"><span>다진 마늘</span></label></li>
+            <li><label><input type="checkbox"><span>식용유</span></label></li>
+            <li><label><input type="checkbox"><span>소금 · 후추</span></label></li>
+            <li><label><input type="checkbox"><span>부침가루 또는 밀가루 (애호박전용)</span></label></li>
+            <li><label><input type="checkbox"><span>설탕 · 참기름 · 배 또는 배즙 (불고기 양념용)</span></label></li>
+          </ul>
         </div>
-      </article>
 
-      <article class="day-card family">
-        <div class="day-tag">일</div>
-        <div>
-          <h3 class="dish-name">소불고기 &amp; 계란찜<span class="people-badge">가족 3인</span></h3>
-          <p class="dish-items">불고기용 소고기 300g, 양파, 당근, 대파, 계란, 잡곡밥</p>
-          <p class="dish-why">기름을 적게 쓰고 채소를 듬뿍 넣으면 자극적이지 않게 먹을 수 있어요.</p>
+        <div class="cat-block">
+          <h3 class="cat-title">기타</h3>
+          <ul class="items">
+            <li><label><input type="checkbox"><span>잡곡밥용 잡곡</span></label></li>
+          </ul>
         </div>
-      </article>
+
+        <div class="tip-box">
+          <strong>장보기 팁</strong>
+          <ul>
+            <li>애호박·양파·계란·대파는 여러 요리에 계속 쓰이니 넉넉히 사두면 편해요.</li>
+            <li>나물류(도라지·콩나물·시금치)는 하나만 골라 사도 괜찮아요.</li>
+            <li>주말 가족 저녁은 3~4인분이라 평일보다 재료를 넉넉히 준비하세요.</li>
+          </ul>
+        </div>
+      </section>
 
     </div>
 
-    <div class="tip-box">
-      <strong>통풍 참고</strong>
-      <p style="margin:8px 0 0;">아빠가 함께 드시는 금~일 메뉴는 퓨린 함량이 높은 등푸른 생선(고등어·정어리 등)과 내장류를 피하고, 두부·닭고기·소고기를 적당량으로 구성했어요. 통풍 식단은 개인차가 커서 정확한 제한 식품은 병원이나 영양사와 상담하시는 게 가장 정확해요.</p>
-    </div>
-  </section>
-
-  <section class="panel" id="shopping">
-    <p class="list-note">이번 주 월~일 저녁 7일 치 장보기 목록이에요. 체크하면서 장을 봐보세요.</p>
-
-    <div class="progress-row">
-      <span id="progress-label">0 / 0 구매 완료</span>
-      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-    </div>
-
-    <div class="cat-block">
-      <h3 class="cat-title">고기 · 생선 · 두부 · 계란</h3>
-      <ul class="items">
-        <li><label><input type="checkbox"><span>두부 3모 (월 된장찌개용 1 + 금 두부스테이크용 2)</span></label></li>
-        <li><label><input type="checkbox"><span>소고기 국거리용 100~150g (화)</span></label></li>
-        <li><label><input type="checkbox"><span>닭가슴살 200g (수)</span></label></li>
-        <li><label><input type="checkbox"><span>순두부 1팩 (목)</span></label></li>
-        <li><label><input type="checkbox"><span>닭다리살 400~500g (토)</span></label></li>
-        <li><label><input type="checkbox"><span>불고기용 소고기 300g (일)</span></label></li>
-        <li><label><input type="checkbox"><span>계란 1.5판 (여러 요리에 사용)</span></label></li>
-      </ul>
-    </div>
-
-    <div class="cat-block">
-      <h3 class="cat-title">채소류</h3>
-      <ul class="items">
-        <li><label><input type="checkbox"><span>애호박 2~3개</span></label></li>
-        <li><label><input type="checkbox"><span>양파 5~6개</span></label></li>
-        <li><label><input type="checkbox"><span>대파 1~2단</span></label></li>
-        <li><label><input type="checkbox"><span>무 1/2개</span></label></li>
-        <li><label><input type="checkbox"><span>콩나물 또는 시금치 1~2봉</span></label></li>
-        <li><label><input type="checkbox"><span>당근 2~3개</span></label></li>
-        <li><label><input type="checkbox"><span>파프리카 1개</span></label></li>
-        <li><label><input type="checkbox"><span>도라지 (손질된 것, 없으면 시금치로 대체)</span></label></li>
-        <li><label><input type="checkbox"><span>표고버섯 6~8개 (금)</span></label></li>
-        <li><label><input type="checkbox"><span>브로콜리 1개 (금, 선택)</span></label></li>
-        <li><label><input type="checkbox"><span>감자 3~4개 (토)</span></label></li>
-        <li><label><input type="checkbox"><span>당면 1봉 (토)</span></label></li>
-      </ul>
-    </div>
-
-    <div class="cat-block">
-      <h3 class="cat-title">양념 · 기본 재료</h3>
-      <ul class="items">
-        <li><label><input type="checkbox"><span>된장</span></label></li>
-        <li><label><input type="checkbox"><span>국간장 또는 진간장</span></label></li>
-        <li><label><input type="checkbox"><span>다진 마늘</span></label></li>
-        <li><label><input type="checkbox"><span>식용유</span></label></li>
-        <li><label><input type="checkbox"><span>소금 · 후추</span></label></li>
-        <li><label><input type="checkbox"><span>부침가루 또는 밀가루 (애호박전용)</span></label></li>
-        <li><label><input type="checkbox"><span>설탕 · 참기름 · 배 또는 배즙 (불고기 양념용)</span></label></li>
-      </ul>
-    </div>
-
-    <div class="cat-block">
-      <h3 class="cat-title">기타</h3>
-      <ul class="items">
-        <li><label><input type="checkbox"><span>잡곡밥용 잡곡</span></label></li>
-      </ul>
-    </div>
-
-    <div class="tip-box">
-      <strong>장보기 팁</strong>
-      <ul>
-        <li>애호박·양파·계란·대파는 여러 요리에 계속 쓰이니 넉넉히 사두면 편해요.</li>
-        <li>나물류(도라지·콩나물·시금치)는 하나만 골라 사도 괜찮아요.</li>
-        <li>주말 가족 저녁은 3~4인분이라 평일보다 재료를 넉넉히 준비하세요.</li>
-      </ul>
-    </div>
-  </section>
-
-  <footer>
-    평일(월~목) 한 끼 재료비는 2인 기준 약 1만~1만5천 원, 주말(금~일) 가족 저녁은 3~4인 기준 약 2만5천~3만 원 정도로 예상돼요. 정확한 가격은 장 보는 곳마다 달라요.
-  </footer>
-
-</div>
+    <footer>
+      평일(월~목) 한 끼 재료비는 2인 기준 약 1만~1만5천 원, 주말(금~일) 가족 저녁은 3~4인 기준 약 2만5천~3만 원 정도로 예상돼요. 정확한 가격은 장 보는 곳마다 달라요.
+    </footer>
+  </div>
 
 <script>
   // 탭 전환
